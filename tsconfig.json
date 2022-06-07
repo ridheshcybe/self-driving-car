@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "outDir": "js",
+        "target": "esNext",
+        "sourceMap": true,
+        "lib": [
+            "esNext",
+            "dom"
+        ],
+        "noUnusedLocals": true,
+        "module": "ES6"
+    }
+}
