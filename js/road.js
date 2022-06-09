@@ -34,7 +34,7 @@ export class Road {
     }
     draw(ctx) {
         ctx.lineWidth = 5;
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = "yellow";
         for (let i = 1; i <= this.laneCount - 1; i++) {
             const x = lerp(this.left, this.right, i / this.laneCount);
             ctx.setLineDash([20, 20]);

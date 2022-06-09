@@ -76,7 +76,6 @@ export class Car {
     ctx.rotate(-this.angle);
 
     ctx.fillStyle = "blue";
-    ctx.strokeStyle = "blue";
     ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
 
     ctx.restore();
