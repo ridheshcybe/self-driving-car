@@ -18,8 +18,10 @@ export class Car {
   sensor: Sensor;
   brain: NeuralNetwork;
   controls: Controls;
+  img: HTMLImageElement;
+  mask: HTMLCanvasElement;
   polygon: any[];
-  constructor(x:number, y:number, width:number, height:number, controlType, maxSpeed = 3) {
+  constructor(x:number, y:number, width:number, height:number, controlType:string, maxSpeed = 3, color = "blue") {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -39,6 +41,23 @@ export class Car {
       this.brain = new NeuralNetwork([this.sensor.rayCount, 6, 4]);
     }
     this.controls = new Controls(controlType);
+
+    this.img = new Image();
+    this.img.src = "car.png";
+
+    this.mask = document.createElement("canvas");
+    this.mask.width = width;
+    this.mask.height = height;
+
+    const maskCtx = this.mask.getContext("2d");
+    this.img.onload = () => {
+      maskCtx.fillStyle = color;
+      maskCtx.rect(0, 0, this.width, this.height);
+      maskCtx.fill();
+
+      maskCtx.globalCompositeOperation = "destination-atop";
+      maskCtx.drawImage(this.img, 0, 0, this.width, this.height);
+    };
   }
 
   update(roadBorders, traffic) {
@@ -139,22 +158,32 @@ export class Car {
     this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx, color) {
-    if (this.damaged) {
-      ctx.fillStyle = "gray";
-    } else {
-      ctx.fillStyle = color;
-    }
-    ctx.beginPath();
-    ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
-    for (let i = 1; i < this.polygon.length; i++) {
-      ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
-    }
-    ctx.fill();
-
-    if (this.sensor) {
+  draw(ctx, drawSensor = false) {
+    if (this.sensor && drawSensor) {
       this.sensor.draw(ctx);
     }
+
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(-this.angle);
+    if (!this.damaged) {
+      ctx.drawImage(
+        this.mask,
+        -this.width / 2,
+        -this.height / 2,
+        this.width,
+        this.height
+      );
+      ctx.globalCompositeOperation = "multiply";
+    }
+    ctx.drawImage(
+      this.img,
+      -this.width / 2,
+      -this.height / 2,
+      this.width,
+      this.height
+    );
+    ctx.restore();
   }
 }
 
