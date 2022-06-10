@@ -21,6 +21,7 @@ export class Controls {
 
   #addKeyboardListeners() {
     document.onkeydown = (event) => {
+      console.log(`down: ${event.key}`)
       switch (event.key) {
         case "a":
           this.left = true;
@@ -37,6 +38,7 @@ export class Controls {
       }
     };
     document.onkeyup = (event) => {
+      console.log(`up: ${event.key}`)
       switch (event.key) {
         case "a":
           this.left = false;

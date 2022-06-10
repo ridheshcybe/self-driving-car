@@ -8,8 +8,8 @@ export class Road {
   right: number;
   top: number;
   bottom: number;
-  borders: { x: any; y: any; }[][];
-  constructor(x:number, width:number, laneCount = 3) {
+  borders: { x: any; y: any }[][];
+  constructor(x: number, width: number, laneCount = 3) {
     this.x = x;
     this.width = width;
     this.laneCount = laneCount;
