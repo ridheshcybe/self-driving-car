@@ -1,5 +1,5 @@
 export class NeuralNetwork {
-  levels: any[];
+  levels: Level[];
   constructor(neuronCounts) {
     this.levels = [];
     for (let i = 0; i < neuronCounts.length - 1; i++) {

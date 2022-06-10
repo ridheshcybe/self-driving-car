@@ -16,10 +16,10 @@ export class Car {
   damaged: boolean;
   useBrain: boolean;
   sensor: Sensor;
-  brain: any;
+  brain: NeuralNetwork;
   controls: Controls;
   polygon: any[];
-  constructor(x:number, y:number, width:number, height:number, controlType:String, maxSpeed = 3) {
+  constructor(x:number, y:number, width:number, height:number, controlType, maxSpeed = 3) {
     this.x = x;
     this.y = y;
     this.width = width;
