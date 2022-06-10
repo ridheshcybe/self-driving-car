@@ -8,8 +8,8 @@ export class Road {
   right: number;
   top: number;
   bottom: number;
-  borders: { x: any; y: any }[][];
-  constructor(x: number, width: number, laneCount = 3) {
+  borders: { x: any; y: any; }[][];
+  constructor(x:number, width:number, laneCount = 3) {
     this.x = x;
     this.width = width;
     this.laneCount = laneCount;
@@ -42,7 +42,7 @@ export class Road {
 
   draw(ctx) {
     ctx.lineWidth = 5;
-    ctx.strokeStyle = "yellow";
+    ctx.strokeStyle = "white";
 
     for (let i = 1; i <= this.laneCount - 1; i++) {
       const x = lerp(this.left, this.right, i / this.laneCount);
@@ -63,4 +63,5 @@ export class Road {
     });
   }
 }
+
 export default Road;
