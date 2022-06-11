@@ -21,7 +21,15 @@ export class Car {
   img: HTMLImageElement;
   mask: HTMLCanvasElement;
   polygon: any[];
-  constructor(x:number, y:number, width:number, height:number, controlType:string, maxSpeed = 3, color = "blue") {
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    controlType: string,
+    maxSpeed = 3,
+    color = "blue"
+  ) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -60,7 +68,13 @@ export class Car {
     };
   }
 
-  update(roadBorders, traffic) {
+  update(
+    roadBorders: {
+      x: any;
+      y: any;
+    }[][],
+    traffic: Car[]
+  ) {
     if (!this.damaged) {
       this.#move();
       this.polygon = this.#createPolygon();
@@ -82,7 +96,13 @@ export class Car {
     }
   }
 
-  #assessDamage(roadBorders, traffic) {
+  #assessDamage(
+    roadBorders: {
+      x: any;
+      y: any;
+    }[][],
+    traffic: Car[]
+  ) {
     for (let i = 0; i < roadBorders.length; i++) {
       if (polysIntersect(this.polygon, roadBorders[i])) {
         return true;
@@ -158,7 +178,7 @@ export class Car {
     this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx, drawSensor = false) {
+  draw(ctx: CanvasRenderingContext2D, drawSensor = false) {
     if (this.sensor && drawSensor) {
       this.sensor.draw(ctx);
     }

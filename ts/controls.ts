@@ -3,7 +3,7 @@ export class Controls {
   left: boolean;
   right: boolean;
   reverse: boolean;
-  constructor(type) {
+  constructor(type: string) {
     this.forward = false;
     this.left = false;
     this.right = false;
@@ -21,7 +21,7 @@ export class Controls {
 
   #addKeyboardListeners() {
     document.onkeydown = (event) => {
-      console.log(`down: ${event.key}`)
+      console.log(`down: ${event.key}`);
       switch (event.key) {
         case "a":
           this.left = true;
@@ -38,7 +38,7 @@ export class Controls {
       }
     };
     document.onkeyup = (event) => {
-      console.log(`up: ${event.key}`)
+      console.log(`up: ${event.key}`);
       switch (event.key) {
         case "a":
           this.left = false;

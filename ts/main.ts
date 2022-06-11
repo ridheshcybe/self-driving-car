@@ -56,7 +56,7 @@ function generateCars(N) {
   return cars;
 }
 
-function animate(time) {
+function animate(time: number) {
   for (let i = 0; i < traffic.length; i++) {
     traffic[i].update(road.borders, []);
   }
