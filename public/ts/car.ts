@@ -1,3 +1,4 @@
+import { roadborders } from './interface';
 import Controls from "./controls.js";
 import NeuralNetwork from "./network.js";
 import Sensor from "./sensor.js";
@@ -69,10 +70,7 @@ export class Car {
   }
 
   update(
-    roadBorders: {
-      x: any;
-      y: any;
-    }[][],
+    roadBorders: roadborders,
     traffic: Car[]
   ) {
     if (!this.damaged) {
@@ -97,10 +95,7 @@ export class Car {
   }
 
   #assessDamage(
-    roadBorders: {
-      x: any;
-      y: any;
-    }[][],
+    roadBorders: roadborders,
     traffic: Car[]
   ) {
     for (let i = 0; i < roadBorders.length; i++) {

@@ -1,3 +1,4 @@
+import { roadborders } from './interface';
 import { lerp } from "./utils.js";
 
 export class Road {
@@ -8,7 +9,7 @@ export class Road {
   right: any;
   top: number;
   bottom: number;
-  borders: { x: any; y: any; }[][];
+  borders: roadborders;
   constructor(x, width, laneCount = 3) {
     this.x = x;
     this.width = width;
